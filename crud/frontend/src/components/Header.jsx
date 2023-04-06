@@ -2,7 +2,7 @@ import './Header.css'
 import React from 'react'
 
 export default props => (
-    <header className='Header'>
+    <header className='header'>
         Cabeçalho
     </header>
 )    

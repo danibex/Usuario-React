@@ -2,7 +2,7 @@ import './Footer.css'
 import React from 'react'
 
 export default props => (
-    <footer className='Footer'>
+    <footer className='footer'>
         Rodapé
     </footer>
 )
