@@ -1,11 +1,14 @@
 {
-    "users": [{
-        "id": 1,
-        "name": "Rafael Santana",
-        "email": "rafadebeca@gmail.com"
-    }, {
-        "id": 2,
-        "name": "Rebeca Santana",
-        "email": "rebecaalmeida99@gmail.com"
-    }]
+  "users": [
+    {
+      "id": 1,
+      "name": "Rafael Santana",
+      "email": "rafadebeca@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Rebeca Santana",
+      "email": "rebecaalmeida99@gmail.com"
+    }
+  ]
 }

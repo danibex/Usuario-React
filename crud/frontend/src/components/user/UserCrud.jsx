@@ -15,6 +15,13 @@ export default class UserCrud extends Component {
     
     state = {...initialState}
     
+    componentWillMount() {
+        axios(baseUrl)
+            .then(resp => {
+                this.setState({list: resp.data})
+            })
+    }
+
     clear() {
         this.setState({user: initialState.user})
     }
@@ -30,9 +37,9 @@ export default class UserCrud extends Component {
             }) 
     }
 
-    getUpdaterList(user) {
+    getUpdaterList(user, add =  true) {
         const list = this.state.list.filter(e => e.id !== user.id)
-        list.unshift(user)
+        if(add) list.unshift(user)
         return list
     }
 
@@ -45,15 +52,90 @@ export default class UserCrud extends Component {
     renderForm() {
         return (
             <div className="form">
-                
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                          <label>Nome</label>
+                          <input type="text" className="form-control" name="name" value={this.state.user.name} onChange={e => this.updateField(e)} placeholder="Digite o nome..."/>
+                    </div>
+                    <div className="col-12 col-md-6">
+                          <label>Email</label>
+                          <input type="text" className="form-control" name="email" value={this.state.user.email} onChange={e => this.updateField(e)} placeholder="Digite o email..."/>
+                    </div>
+                </div>
+            <hr />
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-end">
+                        <button className="btn btn-primary mx-1"
+                         onClick={e => this.save(e)}>
+                            Salvar
+                        </button>
+                        <button className="btn btn-secondary mx-1"
+                        onClick={e => this.clear(e)}>
+                            Cancelar
+                        </button>
+                    </div>                    
+                </div>
             </div>
+            
+
         )
+    }
+
+    load(user) {
+        this.setState({user})
+    }
+
+    remove(user) {
+        axios.delete(`${baseUrl}/${user.id}`)
+            .then(resp => {
+                const list = this.getUpdaterList(user, false)
+                this.setState({list})
+            })
+    }
+
+    renderTable() {
+        return(
+            <table className="table mt-4">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.renderRows()}
+                </tbody>
+            </table>
+        )
+    }
+
+    renderRows() {
+        return this.state.list.map(user => {
+            return(
+                <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                        <button className="btn btn-warning">
+                            <i className="fa fa-pencil" onClick={() => this.load(user)}></i>
+                        </button>
+                        <button className="btn btn-danger ml-2" onClick={() => this.remove(user)}>
+                            <i className="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            )
+        })
     }
 
     render() {
         return (
             <Main {...headerProps}>
-                Cadastro de Usuário
+                {this.renderForm()}
+                {this.renderTable()}
             </Main>
         )
     }
