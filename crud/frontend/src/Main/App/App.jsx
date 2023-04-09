@@ -3,17 +3,20 @@ import 'font-awesome/css/font-awesome.min.css'
 import './App.css'
 import React from 'react'
 
+import { BrowserRouter } from 'react-router-dom'
+
 import Logo from '../../components/Logo'
 import Nav from '../../components/Nav'
-import Home from '../../components/home/Home'
 import Footer from '../../components/Footer'
+import Routes from './Routes'
 
 export default props =>
+<BrowserRouter>
     <div className='app'>
         <Logo />
         <Nav />
-        <Home />
+        <Routes/>
         <Footer />
     </div>
-
+</BrowserRouter>
     {/* Font Awesome (Biblioteca de icones) */}
