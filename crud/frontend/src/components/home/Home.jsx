@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../../templates/Main";
+import Main from "../templates/Main";
 
 export default props => (
 <Main icon="home" title="Início" subtitle="Segundo Projeto do capítulo de React">

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import Main from "../../templates/Main";
+import Main from "../templates/Main";
 import { baseUrl, initialState } from "./BaseUrl"
 
 const headerProps = {

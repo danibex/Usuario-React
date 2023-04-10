@@ -5,9 +5,9 @@ import React from 'react'
 
 import { BrowserRouter } from 'react-router-dom'
 
-import Logo from '../../components/Logo'
-import Nav from '../../components/Nav'
-import Footer from '../../components/Footer'
+import Logo from '../components/templates/Logo'
+import Nav from '../components/templates/Nav'
+import Footer from '../components/templates/Footer'
 import Routes from './Routes'
 
 export default props =>
